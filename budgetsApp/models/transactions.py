@@ -1,5 +1,4 @@
 from django.db import models
-from .models import User
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
-class Budget(models.Model):
-    user = models.OneToOneField(User, )
+# Gestionnaire personnalisé pour le modèle utilisateur
