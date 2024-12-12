@@ -5,5 +5,5 @@ from .views.utilisateur_views import InscriptionUtilisateurView
 
 urlpatterns = [
     path('send-test-email/', send_test_email, name='send_test_email'),
-    path('inscription/', InscriptionUtilisateurView.as_view(), name='inscription_utilisateur'),
+    path('inscription/', InscriptionUtilisateurView.as_view(), name='inscription'),
 ]
