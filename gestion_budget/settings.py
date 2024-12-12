@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
+from datetime import timedelta
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django.contrib.sites',
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -163,3 +165,7 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'budgetsApp.Utilisateur'
+
+REST_KNOX = {
+    'TOKEN_TTL': timedelta(hours=24),
+}
