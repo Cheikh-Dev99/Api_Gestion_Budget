@@ -15,10 +15,22 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 
 from pathlib import Path
+import dj_database_url
+from celery.schedules import crontab
+import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 import environ
 env = environ.Env()
 environ.Env.read_env(env_file=str(BASE_DIR / ".env"))
+from datetime import timedelta
+
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 
 
 # Quick-start development settings - unsuitable for production
