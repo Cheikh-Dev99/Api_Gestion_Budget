@@ -6,5 +6,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('budgetsApp.urls')),
     path('api/utilisateurs/', include('budgetsApp.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    # URLs pour l'authentification google
+    path('accounts/', include('allauth.urls')),
 ]
