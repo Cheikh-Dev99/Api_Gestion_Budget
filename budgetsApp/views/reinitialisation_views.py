@@ -26,7 +26,7 @@ class DemandeReinitialisationMotDePasseView(APIView):
             TokenReinitialisation.objects.create(utilisateur=utilisateur, token=token)
 
             # Envoi de l'email
-            lien = f"http://127.0.0.1:8000/api/utilisateurs/reinitialisation/{token}/"
+            lien = f"https://api-gestion-budget.onrender.com/api/reinitialisation/{token}/"
             send_mail(
                 subject="Réinitialisation de votre mot de passe",
                 message=f"Bonjour {utilisateur.prenom},\n\nUtilisez ce lien pour réinitialiser votre mot de passe : {lien}\n\nCe lien expire dans une heure.",

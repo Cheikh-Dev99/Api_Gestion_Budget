@@ -43,7 +43,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['api-gestion-budget.onrender.com', '127.0.0.1']
 
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -171,9 +170,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SITE_URL = "https://api-gestion-budget.onrender.com"
+DEFAULT_FROM_EMAIL = 'noreply@gestion-budget.com'
 
 # Paramètres d'authentification de Django REST Framework
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'knox.auth.TokenAuthentication',
