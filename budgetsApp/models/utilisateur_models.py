@@ -14,7 +14,7 @@ class GestionnaireUtilisateur(BaseUserManager):
         utilisateur.save(using=self._db)
         return utilisateur
 
-    def creer_superutilisateur(self, prenom, nom, telephone, email, password=None):
+    def create_superuser(self, prenom, nom, telephone, email, password=None):
         utilisateur = self.creer_utilisateur(
             prenom, nom, telephone, email, password)
         utilisateur.is_staff = True
