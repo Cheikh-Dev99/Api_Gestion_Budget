@@ -3,7 +3,7 @@ from ..models.transactions import Transaction  # Importation correcte du modèle
 
 class TransactionSerializer(serializers.ModelSerializer):
         
-    amount = serializers.DecimalField(max_digits=10, decimal_places=2)
+    montant = serializers.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
         model = Transaction

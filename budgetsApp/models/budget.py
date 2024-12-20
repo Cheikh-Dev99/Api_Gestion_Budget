@@ -1,18 +1,15 @@
 from django.db import models
-from decimal import Decimal
 
 class Budget(models.Model):
-    initial_amount = models.DecimalField(max_digits=10, decimal_places=2)  # Montant initial du budget
-    current_amount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)  # Montant actuel après modification
+    montant_initial = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)  # Montant initial du budget
+    montant_actuel = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)  # Montant actuel après modification
 
     def save(self, *args, **kwargs):
         """
-        Lors de la création, définir current_amount à la valeur de initial_amount.
+        Lors de la création, définir montant_actuel à la valeur de montant_initial.
         """
         if not self.pk:  # Si le budget est nouveau
-            self.current_amount = self.initial_amount
-        # Convertir current_amount en float
-        self.current_amount = float(self.current_amount)
+            self.montant_actuel = self.montant_initial
         super(Budget, self).save(*args, **kwargs)
 
     def update_amount(self, transaction):
@@ -20,11 +17,11 @@ class Budget(models.Model):
         Met à jour le montant actuel du budget en fonction de la transaction.
         :param transaction: Une instance du modèle Transaction
         """
-        if transaction.type == "income":
-            self.current_amount += float(transaction.amount)  # Ajout d'un revenu
-        elif transaction.type == "expense":
-            self.current_amount -= float(transaction.amount)  # Soustraction d'une dépense
+        if transaction.type == "revenu":
+            self.montant_actuel += transaction.montant
+        elif transaction.type == "depense":
+            self.montant_actuel -= transaction.montant
         self.save()
 
     def __str__(self):
-        return f"Budget avec un montant actuel de {self.current_amount:,.2f}€"
+        return f"Budget avec un montant actuel de {self.montant_actuel:,.2f} €"

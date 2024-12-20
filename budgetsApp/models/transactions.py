@@ -3,23 +3,25 @@ from .budget import Budget
 from decimal import Decimal
 
 class Transaction(models.Model):
-    TRANSACTION_TYPES = [
-        ('income', 'Revenu'),
-        ('expense', 'Dépense'),
+    TYPES_TRANSACTION = [
+        ('revenu', 'Revenu'),
+        ('depense', 'Dépense'),
     ]
-    
-    budget = models.ForeignKey('Budget', on_delete=models.CASCADE, related_name='transactions')
-    amount = models.DecimalField(max_digits=10, decimal_places=2)  # Montant de la transaction
-    type = models.CharField(max_length=10, choices=TRANSACTION_TYPES)
-    description = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    id = models.AutoField(primary_key=True) 
+    budget = models.ForeignKey('Budget', on_delete=models.CASCADE, related_name='transactions')  # Associer une transaction à un budget
+    montant = models.DecimalField(max_digits=10, decimal_places=2)  # Montant de la transaction
+    type = models.CharField(max_length=10, choices=TYPES_TRANSACTION)  # Type de transaction (revenu ou dépense)
+    description = models.TextField(blank=True, null=True)  # Description facultative
+    cree_le = models.DateTimeField(auto_now_add=True)  # Date de création
+    updated_at = models.DateTimeField(auto_now=True)  # Dernière date de modification
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['-cree_le']  # Trier les transactions par date décroissante
 
     def __str__(self):
-        return f"{self.get_type_display()} - {float(self.amount):,.2f}€"
+        return f"{self.get_type_display()} - {self.montant:,.2f} €"
+
+
 
     def get_absolute_url(self):
         return f"/transactions/{self.pk}/"
