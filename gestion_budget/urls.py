@@ -1,3 +1,4 @@
+# gestion_budget/urls.py
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -5,7 +6,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('budgetsApp/', include('budgetsApp.urls')),
+    path('api/', include('budgetsApp.urls')),
+    path('api/utilisateurs/', include('budgetsApp.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
 
 if settings.DEBUG:
