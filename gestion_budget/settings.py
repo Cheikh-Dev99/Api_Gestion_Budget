@@ -18,12 +18,13 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 from pathlib import Path
+import dj_database_url
+from celery.schedules import crontab
+import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 import environ
 env = environ.Env()
 environ.Env.read_env(env_file=str(BASE_DIR / ".env"))
-import dj_database_url
-
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
@@ -51,6 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
     'budgetsApp',
     'rest_framework',
     'rest_framework.authtoken',
@@ -159,6 +162,16 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# REST Framework settings
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#         'rest_framework.authentication.TokenAuthentication',
+#         'rest_framework.authentication.SessionAuthentication',
+#     ),
+# }
 
 # Paramètres SMTP Pour Gmail
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
