@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'budgetsApp',
-    'rest_framework',
     'rest_framework.authtoken',
     'django.contrib.sites',
     'allauth',
