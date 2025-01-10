@@ -26,7 +26,7 @@ class GestionnaireUtilisateur(BaseUserManager):
 class Utilisateur(AbstractBaseUser, PermissionsMixin):
     prenom = models.CharField(max_length=50)
     nom = models.CharField(max_length=50)
-    telephone = models.CharField(max_length=15, unique=True)
+    telephone = models.CharField(max_length=15, unique=True, null=True, blank=True)
     email = models.EmailField(unique=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
