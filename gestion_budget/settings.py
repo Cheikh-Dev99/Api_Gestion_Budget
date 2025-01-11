@@ -39,11 +39,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False
-DEBUG = True
+DEBUG = False
+# DEBUG = True
 
-# ALLOWED_HOSTS = ['api-gestion-budget.onrender.com', '127.0.0.1']
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['api-gestion-budget.onrender.com', '127.0.0.1']
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -102,24 +102,23 @@ WSGI_APPLICATION = 'gestion_budget.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env("DB_NAME"),
-        'USER': env("DB_USER"),
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"),
-        'PORT': env("DB_PORT"),
-        'OPTIONS': {
-            'client_encoding': 'UTF8',
-        },
-    }
-}
 # DATABASES = {
-#     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-#     # 'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env("DB_NAME"),
+#         'USER': env("DB_USER"),
+#         'PASSWORD': env("DB_PASSWORD"),
+#         'HOST': env("DB_HOST"),
+#         'PORT': env("DB_PORT"),
+#         'OPTIONS': {
+#             'client_encoding': 'UTF8',
+#         },
+#     }
 # }
-
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    # 'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
